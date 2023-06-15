@@ -27,6 +27,8 @@ class Enemy(Sprite):
         self.move_x_for = random.randint(move_x_for[0], move_x_for[1])
         self.index = 0
         self.shooting_time = random.randint(30, 50)
+        self.shooting_interval = random.randint(1000, 2500)
+        self.last_shoot_time = pygame.time.get_ticks() 
     
     def change_movement_x(self):
         self.index += 1
@@ -54,10 +56,10 @@ class Enemy(Sprite):
             
     def shoot(self, bullet_manager):
         current_time = pygame.time.get_ticks()
-        if self.shooting_time <= current_time:
+        if current_time - self.last_shoot_time >= self.shooting_interval:
             bullet = Bullet(self)
             bullet_manager.add_bullet(bullet)
-            self.shooting_time = current_time + random.randint(20, 50)
+            self.last_shoot_time = current_time
     
     def draw(self,  screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
