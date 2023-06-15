@@ -21,6 +21,7 @@ class Game:
         self.player = Spaceship()
         self.enemy_manager = EnemyManager()
         self.bullet_manager = BulletManager()
+        self.explosion_group = pygame.sprite.Group()
         
     def run(self):
         self.playing = True
@@ -45,6 +46,7 @@ class Game:
         self.player.update(user_input)
         self.enemy_manager.update(self)
         self.bullet_manager.update(self)
+        self.explosion_group.update()
     
     def draw(self):
         self.clock.tick(FPS)
@@ -54,6 +56,8 @@ class Game:
         self.player.draw(self.screen)
         self.enemy_manager.draw(self.screen)
         self.bullet_manager.draw(self.screen)
+        self.explosion_group.draw(self.screen)
+        
         pygame.display.update()
         pygame.display.flip()
         

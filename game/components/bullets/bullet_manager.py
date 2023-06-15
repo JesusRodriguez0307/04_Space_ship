@@ -1,9 +1,11 @@
 import pygame
+from game.components.explosion import Explosion
 
 class BulletManager:
     def __init__(self):
         self.bullets = []
         self.enemy_bullets = []
+        self.explosion_group = pygame.sprite.Group()
         
     def update(self, game):
         for enemy_bullets in self.enemy_bullets:
@@ -23,6 +25,8 @@ class BulletManager:
             if bullet.rect.colliderect(enemy.rect):
                 self.bullets.remove(bullet)
                 enemy_manager.enemies.remove(enemy)
+                explosion = Explosion(enemy.rect.centerx, enemy.rect.centery)
+                self.explosion_group.add(explosion)
                 break
     
     def draw(self, screen):
@@ -31,6 +35,9 @@ class BulletManager:
         
         for bullet in self.bullets:
             bullet.draw(screen)
+        
+        self.explosion_group.draw(screen)
+        self.explosion_group.update()
             
     def add_bullet(self, bullet):
         if bullet.owner == 'enemy':

@@ -27,5 +27,14 @@ BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
 ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
 ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
+EXPLOSION = [pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_1.png")), 
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_2.png")), 
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_3.png")),
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_4.png")),
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_5.png")),
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_6.png")),
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_7.png")),
+             pygame.image.load(os.path.join(IMG_DIR, "Other/explosion/stage_8.png"))
+             ]
 
 FONT_STYLE = 'freesansbold.ttf'
