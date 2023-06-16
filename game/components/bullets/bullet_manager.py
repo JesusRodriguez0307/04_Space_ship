@@ -11,18 +11,22 @@ class BulletManager:
         for enemy_bullets in self.enemy_bullets:
             enemy_bullets.update(self.enemy_bullets)
             if enemy_bullets.rect.colliderect(game.player.rect) and enemy_bullets.owner == 'enemy':
+                game.death_count += 1
                 self.enemy_bullets.remove(enemy_bullets)
-                game.playing = False
                 pygame.time.delay(1000)
+                game.show_menu
+                game.playing = False
                 break
+            
         for bullet in self.bullets:
             bullet.update(self.bullets)
             if bullet.owner == 'player':
-                self.check_collision(bullet, game.enemy_manager)
+                self.check_collision(bullet, game.enemy_manager, game)
     
-    def check_collision(self, bullet, enemy_manager):
+    def check_collision(self, bullet, enemy_manager, game):
         for enemy in enemy_manager.enemies:
             if bullet.rect.colliderect(enemy.rect):
+                game.update_score()
                 self.bullets.remove(bullet)
                 enemy_manager.enemies.remove(enemy)
                 explosion = Explosion(enemy.rect.centerx, enemy.rect.centery)

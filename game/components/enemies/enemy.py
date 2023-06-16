@@ -7,7 +7,7 @@ from game.components.bullets.bullet import Bullet
 
 class Enemy(Sprite):
     Y_POS = 20
-    X_POS_LIST = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
+    X_POS_LIST = [50, 100, 200,300, 450, 500, 650, 700, 850, 900, 1000]
     SPEED_X = 5
     SPEED_Y = 1
     MOV_X = {0:'left', 1:'right'}
