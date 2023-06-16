@@ -26,13 +26,17 @@ class Game:
         self.running = False
         self.score = 0
         self.death_count = 0
+        self.high_score = 0
         self.menu = Menu('Press any key to start.  .  .', self.screen)
         
     def execute(self):
         self.running = True
         while self.running:
             if not self.playing:
+                if self.score > self.high_score:
+                    self.high_score = self.score
                 self.show_menu()
+                
         pygame.display.quit()
         pygame.quit()
                 
@@ -49,6 +53,7 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+                self.running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self.player.shoot(self.bullet_manager)
@@ -87,20 +92,36 @@ class Game:
         
     def show_menu(self):
         self.menu.reset_screen_color(self.screen)
+        self.draw_background()
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
         
         if self.death_count == 0:
             self.menu.draw(self.screen)
         else:
-            self.menu.update_message('New Message')
-            self.menu.draw(self.screen)
-        
+            lines = [
+                "Game Over",
+                "",
+                f"Deaths: {self.death_count}",
+                f"Score: {self.score}",
+                f"Max Score: {self.high_score}",
+                "",
+                "Press SPACE to restart"
+            ]
+            line_height = 40
+            y_pos = half_screen_height - ((len(lines) * line_height) // 2)
+    
+            for line in lines:
+                text = self.menu.font.render(line, True, (255, 255, 255))
+                text_rect = text.get_rect(center=(half_screen_width, y_pos))
+                self.screen.blit(text, text_rect)
+                y_pos += line_height
+                
         icon = pygame.transform.scale(ICON, (80, 120))
         self.screen.blit(icon, (half_screen_width - 50, half_screen_height - 150))
 
         self.menu.update(self)
-        
+     
     def update_score(self):
         self.score += 1
         

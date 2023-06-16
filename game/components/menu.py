@@ -8,7 +8,7 @@ class Menu:
     def __init__(self, message, screen):
         screen.fill((255, 255, 255))
         self.font = pygame.font.Font(FONT_STYLE, 30)
-        self.text = self.font.render(message, True, (0, 0, 0))
+        self.text = self.font.render(message, True, (255, 255, 255))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
         
@@ -19,7 +19,8 @@ class Menu:
                 game.playing = False
             
             if event.type == pygame.KEYDOWN:
-                game.run()    
+                game.score = 0
+                game.run()
             
     def update(self, game):
         pygame.display.update()
@@ -29,7 +30,7 @@ class Menu:
         screen.blit(self.text, self.text_rect)
     
     def update_message(self, message):
-        self.text = self.font.render(message, True, (0, 0, 0))
+        self.text = self.font.render(message, True, (255, 255, 255))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
     
