@@ -8,6 +8,7 @@ SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
+
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
@@ -22,6 +23,8 @@ SHIELD_TYPE = 'shield'
 
 SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 SPACESHIP_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_shield.png"))
+SPACESHIP_MACHINE_GUN = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/heavy_machine_gun.png"))
+
 BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
 
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
